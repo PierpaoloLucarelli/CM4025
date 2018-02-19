@@ -1,0 +1,16 @@
+{
+  "name": "mmoprg",
+  "version": "1.0.0",
+  "description": "Basic mmorpg game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Pierpaolo Lucarelli",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  }
+}
