@@ -1,6 +1,7 @@
 import { WORLD_SIZE } from '../config'
 import createWorld from './world/createWorld'
 import fileLoader from '../config/fileloader'
+import player from './player'
 
 const SERVER_IP = 'localhost:8000'
 let socket = null
@@ -22,9 +23,9 @@ class Game extends Phaser.State {
     // Creates the world
     createWorld(this.game)
     // Connects the player to the server
-    // socket = io(SERVER_IP)
+    socket = io(SERVER_IP)
     // // Creates the player passing the X, Y, game and socket as arguments
-    // this.player = player(Math.random() * width, Math.random() * height / 2, this.game, socket)
+    this.player = player(Math.random() * width, Math.random() * height / 2, this.game, socket)
     // // Creates the player name text
     // this.player.playerName = createText(this.game, this.player.sprite.body)
     // // Creates the player speed text
@@ -44,8 +45,7 @@ class Game extends Phaser.State {
   }
 
   update () {
-    console.log("update");
-    // this.player.drive(this.game)
+    this.player.drive(this.game)
 
     // // Move the camera to follow the player
     // let cameraX = this.player.sprite.x - 800 / 2
