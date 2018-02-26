@@ -4,6 +4,7 @@ import fileLoader from '../config/fileloader'
 import newPlayer from './sockets/newPlayer'
 import updatePlayers from './sockets/updatePlayers'
 import player from './player'
+import playerMovementInterpolation from './predictions/playerMovementInterpolation'
 
 const SERVER_IP = 'localhost:8000'
 let socket = null
@@ -57,13 +58,13 @@ class Game extends Phaser.State {
     this.player.drive(this.game)
 
     // // Move the camera to follow the player
-    // let cameraX = this.player.sprite.x - 800 / 2
-    // let cameraY = this.player.sprite.y - 600 / 2
-    // this.game.camera.x += (cameraX - this.game.camera.x) * 0.08
-    // this.game.camera.y += (cameraY - this.game.camera.y) * 0.08
+    let cameraX = this.player.sprite.x - 800 / 2
+    let cameraY = this.player.sprite.y - 600 / 2
+    this.game.camera.x += (cameraX - this.game.camera.x) * 0.08
+    this.game.camera.y += (cameraY - this.game.camera.y) * 0.08
 
     // // Interpolates the players movement
-    // playerMovementInterpolation(otherPlayers)
+    playerMovementInterpolation(otherPlayers)
   }
 }
 
