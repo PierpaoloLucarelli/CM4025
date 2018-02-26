@@ -2,6 +2,9 @@ import createPlayer from './createPlayer'
 
 const isDown = (game, key) => game.input.keyboard.isDown(key)
 
+const ACCELLERATION = 40
+const SPEED = 1000
+
 export default function (x, y, game, socket) {
   const player = {
     socket,
@@ -23,34 +26,46 @@ export default function (x, y, game, socket) {
         A: Phaser.Keyboard.A,
         D: Phaser.Keyboard.D
       }
-
-      // Only emit if the player is moving
+       // Only emit if the player is moving
       if (this.speed !== 0) {
         this.emitPlayerData()
       }
 
       // Drive forward if W is pressed down
-      if (isDown(game, KEYS.W)) {
-        console.log("key down");
+      if (isDown(game, KEYS.W) && this.speed <= SPEED) {
+        this.speed += ACCELLERATION
+      } else {
+        if (this.speed >= ACCELLERATION) {
+          this.speed -= ACCELLERATION
+        }
       }
 
-      // // Drive backwards if S is pressed down
-      // if (isDown(game, KEYS.S) && this.speed >= -200) {
-      //   this.speed -= 5
-      // } else {
-      //   if (this.speed <= -5) {
-      //     this.speed += 5
-      //   }
-      // }
+      // Drive backwards if S is pressed down
+      if (isDown(game, KEYS.S) && this.speed >= -400) {
+        this.speed -= ACCELLERATION
+      } else {
+        if (this.speed <= -ACCELLERATION) {
+          this.speed += ACCELLERATION
+        }
+      }
 
-      // // Steers the car
-      // if (isDown(game, KEYS.A)) {
-      //   this.sprite.body.angularVelocity = -5 * (this.speed / 1000)
-      // } else if (isDown(game, KEYS.D)) {
-      //   this.sprite.body.angularVelocity = 5 * (this.speed / 1000)
-      // } else {
-      //   this.sprite.body.angularVelocity = 0
-      // }
+      // Steers the car
+      if (isDown(game, KEYS.A)) {
+        this.sprite.body.angularVelocity = -10 * (this.speed / 1000)
+      } else if (isDown(game, KEYS.D)) {
+        this.sprite.body.angularVelocity = 10 * (this.speed / 1000)
+      } else {
+        this.sprite.body.angularVelocity = 0
+      }
+
+      this.sprite.body.velocity.x = this.speed * Math.cos((this.sprite.body.angle - 360) * 0.01745)
+      this.sprite.body.velocity.y = this.speed * Math.sin((this.sprite.body.angle - 360) * 0.01745)
+
+      // Brings the player's sprite to top
+      game.world.bringToTop(this.sprite)
+
+      this.updatePlayerName()
+      this.updatePlayerStatusText('speed', this.sprite.body.x - 57, this.sprite.body.y - 39, this.speedText)
     },
     emitPlayerData () {
       // Emit the 'move-player' event, updating the player's data on the server
