@@ -5,9 +5,17 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
 
+
+app.get("/game", function(req,res){
+	res.sendFile(path.join(__dirname, './../../dist/client/index.html'))
+})
+
 app.use(express.static(path.join(__dirname, './../../dist/client')))
+
 app.use('/assets', express.static(path.join(__dirname, './../../client/assets')))
 app.use('/vendor', express.static(path.join(__dirname, './../../vendor')))
 app.use(cors())
+
+
 
 module.exports = app
