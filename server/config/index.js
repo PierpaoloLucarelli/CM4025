@@ -26,5 +26,4 @@ app.post("/", function(req,res){
 
 app.use(express.static(path.join(__dirname, './../../dist/client')))
 
-
 module.exports = app

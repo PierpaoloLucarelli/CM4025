@@ -5,10 +5,65 @@
 </head>
 <body>
 	<h1>Welcome to the game Bitch</h1>
-	<form action="/" method="POST">
-		<label>Enter a username</label>
-		<input type="text" name="username">
-		<input type="submit" name="">
+	<label>Enter a username</label>
+	<input type="text" id="username" name="username">
+	<button id="submit-btn" onclick="submitForm()">Go</button>
 	</form>
+	<script>
+	function setCookie(name,value,days) {
+	    var expires = "";
+	    if (days) {
+	        var date = new Date();
+	        date.setTime(date.getTime() + (days*24*60*60*1000));
+	        expires = "; expires=" + date.toUTCString();
+	    }
+	    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+	}
+	function getCookie(name) {
+	    var nameEQ = name + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i=0;i < ca.length;i++) {
+	        var c = ca[i];
+	        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+	        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	    }
+	    	return null;
+		}
+		function eraseCookie(name) {   
+	    	document.cookie = name+'=; Max-Age=-99999999;';  
+		}
+		function post(path, params, method) {
+		    method = method || "post";
+		    var form = document.createElement("form");
+		    form.setAttribute("method", method);
+		    form.setAttribute("action", path);
+
+		    for(var key in params) {
+		        if(params.hasOwnProperty(key)) {
+		            var hiddenField = document.createElement("input");
+		            hiddenField.setAttribute("type", "hidden");
+		            hiddenField.setAttribute("name", key);
+		            hiddenField.setAttribute("value", params[key]);
+
+		            form.appendChild(hiddenField);
+		        }
+		    }
+
+		    document.body.appendChild(form);
+		    form.submit();
+		}
+
+		function submitForm(){
+			var username = document.getElementById('username').value;
+			setCookie("username", username, 7);
+			var cookie = getCookie('username');
+			if (cookie) {
+    			console.log(cookie);
+    			post('/', {username: cookie});
+			} else{
+				alert("something went wrong, Enable cookies?");
+			}
+		}
+	</script>
 </body>
 </html>
