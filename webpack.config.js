@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 
 const config = {
@@ -31,7 +32,13 @@ const config = {
         comments: false
       }
     }),
-    new HtmlWebpackPlugin({ template: './client/index.html' })
+    new HtmlWebpackPlugin({ template: './client/index.html' }),
+    new CopyWebpackPlugin([
+   {
+      from: './client/welcome.html',
+      to: path.resolve(__dirname, 'dist/client')
+    }
+  ])
   ]
 }
 
