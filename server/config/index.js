@@ -20,8 +20,7 @@ app.get("/", function(req,res){
 })
 
 app.post("/", function(req,res){
-	console.log(req.body);
-	res.send(req.body.username);
+	res.redirect("/game")
 })
 
 app.use(express.static(path.join(__dirname, './../../dist/client')))

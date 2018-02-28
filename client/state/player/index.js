@@ -1,4 +1,5 @@
 import createPlayer from './createPlayer'
+import { getCookie } from '../utils'
 
 const isDown = (game, key) => game.input.keyboard.isDown(key)
 
@@ -12,6 +13,7 @@ export default function (x, y, game, socket) {
     playerName: null,
     speed: 0,
     speedText: null,
+    username: getCookie("username"),
     drive (game) {
       /*
       Most of the driving logic was written by Daniel Wuggenig
@@ -85,7 +87,7 @@ export default function (x, y, game, socket) {
         }
       })
     },
-    updatePlayerName (name = this.socket.id, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
+    updatePlayerName (name = this.username, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
       // Updates the player's name text and position
       this.playerName.text = String(name)
       this.playerName.x = x
