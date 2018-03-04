@@ -8,6 +8,7 @@ const worldCreator = game => {
   // We set this to true so our game won't pause if we focus
   // something else other than the browser
   game.stage.disableVisibilityChange = true
+  game.physics.p2.setImpactEvents(true);
   // Here we set the bounds of our game world
   game.world.setBounds(0, 0, width, height)
   createMap(game)

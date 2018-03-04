@@ -51,6 +51,7 @@ class Game extends Phaser.State {
   update () {
     this.player.drive(this.game)
 
+
     // Move the camera to follow the player
     let cameraX = this.player.sprite.x - 800 / 2
     let cameraY = this.player.sprite.y - 600 / 2
@@ -59,6 +60,18 @@ class Game extends Phaser.State {
 
     // Interpolates the players movement
     playerMovementInterpolation(otherPlayers)
+    this.detectCollisions()
+  }
+
+  detectCollisions () {
+    for (let id in otherPlayers) {
+        let p = otherPlayers[id]
+        console.log(this.player.sprite.body.x)
+        console.log(p.sprite.body.x - p.sprite.width)
+        if(this.player.sprite.body.x >= p.sprite.body.x - p.sprite.width / 2 && this.player.sprite.body.x <= p.sprite.body.x + p.sprite.width / 2){
+            console.log("yes")
+        }
+    }
   }
 }
 
