@@ -64,14 +64,22 @@ class Game extends Phaser.State {
   }
 
   detectCollisions () {
+    let tip = this.getCarTip()
     for (let id in otherPlayers) {
-        let p = otherPlayers[id]
-        console.log(this.player.sprite.body.x)
-        console.log(p.sprite.body.x - p.sprite.width)
-        if(this.player.sprite.body.x >= p.sprite.body.x - p.sprite.width / 2 && this.player.sprite.body.x <= p.sprite.body.x + p.sprite.width / 2){
-            console.log("yes")
+        let p = otherPlayers[id].sprite.getBounds()
+        if(tip[0] >= p.x && tip[0] <= p.x + p.width){
+            if(tip[1] >= p.y && tip[1] <= p.y + p.height){
+                console.log("yes")
+            }
         }
     }
+  }
+
+  getCarTip(){
+    const p = this.player.sprite
+    let x = p.body.x + (Math.cos(p.body.rotation * p.width / 2))
+    let y = p.body.y + (Math.sin(p.body.rotation * p.width / 2))
+    return [x,y]
   }
 }
 
