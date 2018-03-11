@@ -41,7 +41,7 @@ class Game extends Phaser.State {
     newPlayer(socket, this.player)
     // update all players
     updatePlayers(socket, otherPlayers, this.game)
-    death(socket)
+    death(socket, this.player)
 
     // Configures the game camera
     this.game.camera.x = this.player.sprite.x - 800 / 2
