@@ -5,6 +5,8 @@ import createWorld from './world/createWorld'
 import player from './player'
 import newPlayer from './sockets/newPlayer'
 import updatePlayers from './sockets/updatePlayers'
+import collision from './sockets/collision'
+import death from './sockets/death'
 import playerMovementInterpolation from './predictions/playerMovementInterpolation'
 
 const SERVER_IP = '192.168.0.7:8000'
@@ -39,6 +41,7 @@ class Game extends Phaser.State {
     newPlayer(socket, this.player)
     // update all players
     updatePlayers(socket, otherPlayers, this.game)
+    death(socket)
 
     // Configures the game camera
     this.game.camera.x = this.player.sprite.x - 800 / 2
@@ -69,7 +72,9 @@ class Game extends Phaser.State {
         let p = otherPlayers[id].sprite.getBounds()
         if(tip[0] >= p.x && tip[0] <= p.x + p.width){
             if(tip[1] >= p.y && tip[1] <= p.y + p.height){
-                console.log("yes")
+                // delete the player that died
+                // emit socket.io event to server with id of person that won and person that died
+                collision(socket, this.player.socket.id, id)
             }
         }
     }

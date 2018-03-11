@@ -23,6 +23,12 @@ io.on('connection', socket => {
     io.emit('update-players', players)
   })
 
+  socket.on('collision', data => {
+    socket.broadcast.to(data.loose_id).emit('death', 'for your eyes only');
+    delete players[data.loose_id]
+    io.emit('update-players', players)
+  })
+
   // When a player moves
   socket.on('move-player', data => {
     const { x, y, angle, playerName, speed } = data
