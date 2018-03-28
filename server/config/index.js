@@ -4,6 +4,10 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
+var userSchema = require("../models/users.js");
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/mmorpg');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -20,9 +24,31 @@ app.get("/", function(req,res){
 })
 
 app.post("/", function(req,res){
-	res.redirect("/game")
+	var username = req.body.username;
+    var pass = req.body.pass;
+    console.log(req.body);
+    userSchema.validateUser(username, pass, function(err, user){
+        if(err){
+            res.send("wrong credentials");
+        } else {
+            // req.session.user = user;
+            res.redirect("/game");
+        }
+    });
 })
 
 app.use(express.static(path.join(__dirname, './../../dist/client')))
+
+app.post("/register", function(req,res){
+	var username = req.body.username;
+	var pass = req.body.pass;
+	userSchema.createUser(username, pass, function(err){
+        if(err){
+            res.render("error.jade", {error: err});
+        } else {
+            res.redirect("/");
+        }
+    });
+})
 
 module.exports = app

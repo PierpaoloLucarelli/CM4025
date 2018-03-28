@@ -24,7 +24,7 @@ io.on('connection', socket => {
   })
 
   socket.on('collision', data => {
-    socket.broadcast.to(data.loose_id).emit('death', 'for your eyes only');
+    socket.broadcast.to(data.loose_id).emit('death', 'you died');
     delete players[data.loose_id]
     io.emit('update-players', players)
   })

@@ -5,9 +5,20 @@
 </head>
 <body>
 	<h1>Welcome to the game Bitch</h1>
-	<label>Enter a username</label>
+	<label>Enter your credentials</label>
+	<label>Username</label>
 	<input type="text" id="username" name="username">
+	<label>Password</label>
+	<input type="password" name="pass" id="pass">
 	<button id="submit-btn" onclick="submitForm()">Go</button>
+	<form action="/register" method="POST">
+		<label>Username</label>
+		<input type="text" name="username">
+		<label>Password</label>
+		<input type="password" name="pass">
+		<label>Confirm password</label>
+		<input type="password" name="conf-pass">
+		<input type="submit" name="submit">
 	</form>
 	<script>
 	function setCookie(name,value,days) {
@@ -55,11 +66,12 @@
 
 		function submitForm(){
 			var username = document.getElementById('username').value;
+			var pass = document.getElementById('pass').value;
 			setCookie("username", username, 7);
 			var cookie = getCookie('username');
 			if (cookie) {
     			console.log(cookie);
-    			post('/', {username: cookie});
+    			post('/', {username: cookie, pass: pass});
 			} else{
 				alert("something went wrong, Enable cookies?");
 			}
