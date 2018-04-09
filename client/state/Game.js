@@ -7,9 +7,10 @@ import newPlayer from './sockets/newPlayer'
 import updatePlayers from './sockets/updatePlayers'
 import collision from './sockets/collision'
 import death from './sockets/death'
+import getCookie from "./utils"
 import playerMovementInterpolation from './predictions/playerMovementInterpolation'
 
-const SERVER_IP = '192.168.0.7:8000'
+const SERVER_IP = 'localhost:8000'
 let socket = null
 let otherPlayers = {}
 
@@ -74,7 +75,8 @@ class Game extends Phaser.State {
             if(tip[1] >= p.y && tip[1] <= p.y + p.height){
                 // delete the player that died
                 // emit socket.io event to server with id of person that won and person that died
-                collision(socket, this.player.socket.id, id)
+                let win_player = {id: this.player.socket.id, username: this.player.username }
+                collision(socket, win_player, id)
             }
         }
     }

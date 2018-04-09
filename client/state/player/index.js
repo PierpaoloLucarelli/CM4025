@@ -14,14 +14,7 @@ export default function (x, y, game, socket) {
     speed: 0,
     speedText: null,
     username: getCookie("username"),
-    drive (game) {
-      /*
-      Most of the driving logic was written by Daniel Wuggenig
-      https://www.anexia-it.com/blog/en/introduction-to-the-phaser-framework/
-      I decided to use it since this is supposed to be an introduction to multiplayer
-      online car game, his driving solution is simple and clean and fits perfectly
-      */
-
+    drive (game){
       const KEYS = {
         W: Phaser.Keyboard.W,
         S: Phaser.Keyboard.S,

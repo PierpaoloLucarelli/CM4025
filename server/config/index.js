@@ -32,7 +32,7 @@ app.post("/", function(req,res){
             res.send("wrong credentials");
         } else {
             // req.session.user = user;
-            res.redirect("/game");
+            res.redirect("/game")
         }
     });
 })

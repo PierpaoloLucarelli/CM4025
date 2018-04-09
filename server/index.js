@@ -4,6 +4,7 @@ const app = require('./config')
 const Server = http.Server(app)
 const PORT = process.env.PORT || 8000
 const io = require('socket.io')(Server)
+var userSchema = require("./models/users.js");
 
 Server.listen(PORT, () => console.log('Game server running on:', PORT))
 
@@ -12,7 +13,7 @@ const players = {}
 io.on('connection', socket => {
   // When a player connects
   socket.on('new-player', state => {
-    console.log('New player joined with state:', state)
+    // console.log('New player joined with state:', state)
     players[socket.id] = state
     // Emit the update-players method in the client side
     io.emit('update-players', players)
@@ -24,9 +25,15 @@ io.on('connection', socket => {
   })
 
   socket.on('collision', data => {
-    socket.broadcast.to(data.loose_id).emit('death', 'you died');
+    console.log("collided")
+    socket.broadcast.to(data.loose_id).emit('death', 'you died')
     delete players[data.loose_id]
-    io.emit('update-players', players)
+    userSchema.addPoint(data.win_username, function(err){
+      if(err){
+        console.log(err);
+      } 
+    })
+    io.emit('update-players', players)    
   })
 
   // When a player moves
