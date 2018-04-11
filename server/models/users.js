@@ -80,5 +80,23 @@ exports.getScore = function(user, cb){
     })
 }
 
+exports.buyCar = function(user, car, cb){
+    userModel.findOne({name: user}, function(err, usr){
+        if(err){
+            cb(err)
+        } else{
+            var points = usr.level
+            if(points > parseInt(car.cost)){
+                userModel.findOneAndUpdate({name: user}, {car: car.model}, {upsert:true}, function(err, doc){
+                    if (err) {cb(err)}
+                    else {cb(null)}
+                });
+            } else{
+                console.log("not enough points");
+            }
+        }
+    })
+}
+
 
 module.exports.userSchema = userModel;

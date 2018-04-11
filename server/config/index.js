@@ -51,6 +51,20 @@ app.get("/market", function(req, res){
     }
 })
 
+app.post("/market", function(req,res){
+    var user =  parseCookies(req).username
+    if(user != ""){
+        var car = req.body
+        userSchema.buyCar(user, car, function(err){
+            if(err){
+                console.log(err)
+            } else{
+                res.send("ok you have bouhgt the car");
+            }
+        })
+    }
+})
+
 app.use(express.static(path.join(__dirname, './../../dist/client')))
 
 app.post("/register", function(req,res){
