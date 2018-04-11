@@ -8,9 +8,25 @@
         margin: 0;
         position: relative;
       }
+      #market-btn{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        border: none;
+        background: #fff;
+        border-radius: 5px;
+        color: #000;
+        text-decoration: none;
+      }
+      #market-btn:hover{
+        background: #000;
+        color: #fff;
+      }
     </style>
   </head>
   <body>
+    <a href="/market" id="market-btn">Go to market</a>
     <script src="../vendor/phaser.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="index.js"></script></body>

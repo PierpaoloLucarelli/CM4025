@@ -37,6 +37,10 @@ app.post("/", function(req,res){
     });
 })
 
+app.get("/market", function(req, res){
+    res.sendFile(path.join(__dirname, './../../dist/client/market.html'))
+});
+
 app.use(express.static(path.join(__dirname, './../../dist/client')))
 
 app.post("/register", function(req,res){

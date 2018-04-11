@@ -37,6 +37,10 @@ const config = {
    {
       from: './client/welcome.html',
       to: path.resolve(__dirname, 'dist/client')
+    },
+    {
+      from: './client/market.html',
+      to: path.resolve(__dirname, 'dist/client')
     }
   ])
   ]
