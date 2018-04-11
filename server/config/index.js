@@ -8,9 +8,10 @@ var userSchema = require("../models/users.js");
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mmorpg');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, './../../dist/client'));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(cors())
 app.use('/vendor', express.static(path.join(__dirname, './../../vendor')))
 app.use('/assets', express.static(path.join(__dirname, './../../client/assets')))
@@ -38,8 +39,8 @@ app.post("/", function(req,res){
 })
 
 app.get("/market", function(req, res){
-    res.sendFile(path.join(__dirname, './../../dist/client/market.html'))
-});
+    res.render('market.pug', { title: 'Hey', message: 'Hello there!' })
+})
 
 app.use(express.static(path.join(__dirname, './../../dist/client')))
 

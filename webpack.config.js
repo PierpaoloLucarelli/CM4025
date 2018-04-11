@@ -39,7 +39,7 @@ const config = {
       to: path.resolve(__dirname, 'dist/client')
     },
     {
-      from: './client/market.html',
+      from: './client/market.pug',
       to: path.resolve(__dirname, 'dist/client')
     }
   ])
