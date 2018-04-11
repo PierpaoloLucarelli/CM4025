@@ -1,5 +1,45 @@
 html
-  head
-    title= title
-  body
-    h1= message
+	head
+		title= "The game market"
+	body
+		h1= "Hello " + user
+		h1= "You have " + points + " points"
+
+		h2="Select a car"
+
+		table.myTable
+			tr.table
+				th Model
+				th Speed
+				th Cost
+				th action
+			tr.table 
+				td Car 1
+				td 120
+				td 10 Points
+				td 
+					button Buy
+			tr.table
+				td Car 2
+				td 140
+				td 20 Points
+				td 
+					button Buy
+			tr.table 
+				td Car 3
+				td 160
+				td 30 Points
+				td 
+					button Buy
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+	script.
+		$("tr.table button").click(function() {
+			console.log("click");
+			$row = $(this).parent().parent();
+			var tableData = $row.children("td").map(function() {
+			return $(this).text();
+		}).get();
+			console.log(tableData);
+
+		});
+		

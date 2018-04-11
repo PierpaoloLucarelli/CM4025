@@ -39,7 +39,16 @@ app.post("/", function(req,res){
 })
 
 app.get("/market", function(req, res){
-    res.render('market.pug', { title: 'Hey', message: 'Hello there!' })
+    var user =  parseCookies(req).username
+    if(user != ""){
+        userSchema.getScore(user,  function(err, score){
+            if(err){
+                console.log(err);
+            } else{
+                res.render('market.pug', {user: user, points: score })
+            }
+        })
+    }
 })
 
 app.use(express.static(path.join(__dirname, './../../dist/client')))
@@ -55,5 +64,17 @@ app.post("/register", function(req,res){
         }
     });
 })
+
+function parseCookies (request) {
+    var list = {},
+        rc = request.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+
+    return list;
+}
 
 module.exports = app

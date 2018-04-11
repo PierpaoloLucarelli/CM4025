@@ -69,5 +69,16 @@ exports.addPoint = function(user, cb){
     })
 }
 
+exports.getScore = function(user, cb){
+
+    userModel.findOne({name: user}, function(err, usr){
+        if(err){
+            cb(err, null)
+        } else{
+            cb(null, usr.level)
+        }
+    })
+}
+
 
 module.exports.userSchema = userModel;
