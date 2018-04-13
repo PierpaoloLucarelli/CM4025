@@ -34,7 +34,7 @@ class Game extends Phaser.State {
     // Connects the player to the server
     socket = io(SERVER_IP)
     // Creates the player passing the X, Y, game and socket as arguments
-    this.player = player(Math.random() * width, Math.random() * height / 2, this.game, socket)
+    this.player = player(Math.random() * width, Math.random() * height / 2, this.game, socket, this.user.car)
     // Creates the player name text
     this.player.playerName = createText(this.game, this.player.sprite.body)
     // Creates the player speed text

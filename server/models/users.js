@@ -8,7 +8,7 @@ var User = new Schema({
     name:       {type: String, unique: true},
     password:   String,
     level: {type: Number, default: 0},
-    car: {type: String, default: "basic"}
+    car: {type: String, default: "car1"}
 });
 
 var userModel =  mongoose.model("User", User, "users");

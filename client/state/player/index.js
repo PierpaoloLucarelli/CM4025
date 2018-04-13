@@ -6,10 +6,10 @@ const isDown = (game, key) => game.input.keyboard.isDown(key)
 const ACCELLERATION = 40
 const SPEED = 1000
 
-export default function (x, y, game, socket) {
+export default function (x, y, game, socket, car) {
   const player = {
     socket,
-    sprite: createPlayer(x, y, game),
+    sprite: createPlayer(x, y, game, car),
     playerName: null,
     speed: 0,
     speedText: null,
