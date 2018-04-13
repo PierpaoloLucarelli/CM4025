@@ -46,6 +46,15 @@ exports.validateUser = function(username, pass, cb){
 }
 
 
+exports.updateLevel = function(user, level, cb){
+    userModel.findOneAndUpdate({name :user}, {"level": level}, function(err){
+        if(err) cb(err);
+        else{
+            cb(null);
+        }
+    });
+}
+
 exports.checkSession = function(username, cb){
     userModel.findOne({name: username}, function(err, user){
         if(!user){

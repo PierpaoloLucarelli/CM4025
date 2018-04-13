@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
 var userSchema = require("../models/users.js");
+var carSchema = require("../models/car.js");
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mmorpg');
@@ -45,13 +46,29 @@ app.get("/market", function(req, res){
             if(err){
                 console.log(err);
             } else{
-                res.render('market.pug', {user: user, points: score })
+                carSchema.getAll(function(err, cars){
+                    if(err){
+                        console.log(err);
+                        res.send("somethign went wrong");
+                    } else{
+                        res.render('market.pug', {user: user, points: score, cars: cars })
+                    }
+                });
             }
         })
     }
 })
 
 app.post("/market", function(req,res){
+
+    // console.log(req.body);
+    // carSchema.addCar(req.body, function(err){
+    //     if(err){
+    //         console.log(err);
+    //     } else{
+    //         console.log("ok");
+    //     }
+    // })
     var user =  parseCookies(req).username
     if(user != ""){
         var car = req.body
@@ -59,11 +76,19 @@ app.post("/market", function(req,res){
             if(err){
                 console.log(err)
             } else{
-                res.send("ok you have bouhgt the car");
+                if(user.level >= car.cost){
+                    userSchema.updateLevel(user.name, user.level - parseInt(car.cost), function(err){
+                        if(err){
+                            res.send("something went wrong");
+                        } else{
+                            res.send("you have bought the car");
+                        }
+                    });
+                }
             }
         })
     }
-})
+});
 
 app.use(express.static(path.join(__dirname, './../../dist/client')))
 
