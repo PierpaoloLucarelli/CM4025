@@ -28,6 +28,16 @@ exports.createUser = function(username, pass, cb){
     });
 }
 
+exports.getUser = function(username, cb){
+    userModel.findOne({name: username}, function(err, user){
+        if(err){
+            cb(err, null);
+        } else {
+            cb(null, user);
+        }
+    });
+}
+
 exports.validateUser = function(username, pass, cb){
     userModel.findOne({name: username}, function(err, user){
         if(!user){

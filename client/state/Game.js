@@ -22,10 +22,12 @@ class Game extends Phaser.State {
 
   preload () {
     // Loads files
+    this.user = this.state.states.User;
     fileLoader(this.game)
   }
 
   create () {
+    console.log(this.user);
     const { width, height } = WORLD_SIZE
     // Creates the world
     createWorld(this.game)

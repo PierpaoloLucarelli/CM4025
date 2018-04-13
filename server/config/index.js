@@ -39,6 +39,16 @@ app.post("/", function(req,res){
     });
 })
 
+app.get('/user/:user', function(req,res){
+    userSchema.getUser(req.params.user, function(err, user){
+        if(err){
+            res.send("user not found");
+        } else{
+            res.send(user);
+        }
+    })
+});
+
 app.get("/market", function(req, res){
     var user =  parseCookies(req).username
     if(user != ""){
