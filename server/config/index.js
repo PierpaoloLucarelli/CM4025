@@ -72,19 +72,24 @@ app.post("/market", function(req,res){
     var user =  parseCookies(req).username
     if(user != ""){
         var car = req.body
+        var points = req.body.points;
         userSchema.buyCar(user, car, function(err){
             if(err){
                 console.log(err)
             } else{
-                if(user.level >= car.cost){
-                    userSchema.updateLevel(user.name, user.level - parseInt(car.cost), function(err){
+                if(parseInt(points) >= parseInt(car.cost)){
+                    userSchema.updateLevel(user, parseInt(points) - parseInt(car.cost), function(err){
                         if(err){
                             res.send("something went wrong");
                         } else{
+                            console.log("user bought a car");
                             res.send("you have bought the car");
                         }
                     });
+                } else{
+                    console.log("not enough points to buy car");
                 }
+
             }
         })
     }

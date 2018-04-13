@@ -31,7 +31,7 @@ exports.createUser = function(username, pass, cb){
 exports.validateUser = function(username, pass, cb){
     userModel.findOne({name: username}, function(err, user){
         if(!user){
-            cb("password o username incorette", null);
+            cb("password or username are wrong", null);
         } else {
             console.log(pass);
             bcrypt.compare(pass, user.password, function(err, res) {
@@ -47,6 +47,7 @@ exports.validateUser = function(username, pass, cb){
 
 
 exports.updateLevel = function(user, level, cb){
+    console.log("updating score of : "+ user + "to: " + level);
     userModel.findOneAndUpdate({name :user}, {"level": level}, function(err){
         if(err) cb(err);
         else{
