@@ -1,8 +1,9 @@
-const newPlayer = (socket, player) => {
+const newPlayer = (socket, player, car) => {
   socket.on('connect', () => {
     socket.emit('new-player', {
       x: player.sprite.body.x,
       y: player.sprite.body.y,
+      car: car,
       angle: player.sprite.rotation,
       playerName: {
         name: player.playerName.text,

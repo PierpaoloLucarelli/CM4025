@@ -7,6 +7,7 @@ const ACCELLERATION = 40
 const SPEED = 1000
 
 export default function (x, y, game, socket, car) {
+  console.log("creating new player with car: " + socket);
   const player = {
     socket,
     sprite: createPlayer(x, y, game, car),

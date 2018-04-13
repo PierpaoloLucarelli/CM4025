@@ -13,8 +13,9 @@ const players = {}
 io.on('connection', socket => {
   // When a player connects
   socket.on('new-player', state => {
-    // console.log('New player joined with state:', state)
+    console.log('New player joined with state:', state)
     players[socket.id] = state
+    
     // Emit the update-players method in the client side
     io.emit('update-players', players)
   })

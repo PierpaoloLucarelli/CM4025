@@ -10,7 +10,7 @@ import death from './sockets/death'
 import getCookie from "./utils"
 import playerMovementInterpolation from './predictions/playerMovementInterpolation'
 
-const SERVER_IP = 'localhost:8000'
+const SERVER_IP = '192.168.0.7:8000'
 let socket = null
 let otherPlayers = {}
 
@@ -27,7 +27,6 @@ class Game extends Phaser.State {
   }
 
   create () {
-    console.log(this.user);
     const { width, height } = WORLD_SIZE
     // Creates the world
     createWorld(this.game)
@@ -41,7 +40,7 @@ class Game extends Phaser.State {
     this.player.speedText = createText(this.game, this.player.sprite.body)
 
     // Sends a new-player event to the server
-    newPlayer(socket, this.player)
+    newPlayer(socket, this.player, this.user.car)
     // update all players
     updatePlayers(socket, otherPlayers, this.game)
     death(socket, this.player)

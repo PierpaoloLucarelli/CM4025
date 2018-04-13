@@ -18,7 +18,7 @@ const updatePlayers = (socket, otherPlayers, game) => {
       // In case a player hasn't been created yet
       // We make sure that we won't create a second instance of it
       if (otherPlayers[index] === undefined && index !== socket.id) {
-        const newPlayer = player(data.x, data.y, game)
+        const newPlayer = player(data.x, data.y, game,null, data.car)
         newPlayer.playerName = createText(game, newPlayer)
         newPlayer.speedText = createText(game, newPlayer)
         newPlayer.updatePlayerName(data.playerName.name, data.playerName.x, data.playerName.y)
