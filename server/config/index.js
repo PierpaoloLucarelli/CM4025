@@ -8,7 +8,7 @@ var userSchema = require("../models/users.js");
 var carSchema = require("../models/car.js");
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mmorpg');
+mongoose.connect('mongodb://cm4025:cm4025@ds147469.mlab.com:47469/cm4025');
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, './../../dist/client'));
 app.use(bodyParser.urlencoded({ extended: false }))

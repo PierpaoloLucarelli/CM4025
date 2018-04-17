@@ -10,7 +10,7 @@ import death from './sockets/death'
 import getCookie from "./utils"
 import playerMovementInterpolation from './predictions/playerMovementInterpolation'
 
-const SERVER_IP = '192.168.0.7:8000'
+const SERVER_IP = 'https://cm4025.herokuapp.com/'
 let socket = null
 let otherPlayers = {}
 
