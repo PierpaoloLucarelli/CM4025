@@ -31,7 +31,12 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
+        background: #ccc;
       }
+
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
 
     </style>
   </head>
@@ -39,9 +44,8 @@
     <a href="/market" id="market-btn">Go to market</a>
     <div id="chat">
       <ul id="messages"></ul>
-      <form action="">
-        <button onclick="sendMessage()">Start</button>
-      </form>
+        <input id="m" autocomplete="off" />
+        <button id="msg-btn">Start</button>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../vendor/phaser.min.js"></script>

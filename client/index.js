@@ -6,7 +6,7 @@ class App extends Phaser.Game {
   constructor (user) {
     super(WINDOW_WIDTH, WINDOW_HEIGHT, Phaser.AUTO)
     this.state.add('Game', Game)
-    this.state.add("User", user);
+    this.state.add("User", user)
     this.state.start('Game', user)
   }
 }
