@@ -11,7 +11,8 @@ const worldCreator = game => {
   game.physics.p2.setImpactEvents(true);
   // Here we set the bounds of our game world
   game.world.setBounds(0, 0, width, height)
-  createMap(game)
+  // createMap(game)
+  game.bg = game.add.tileSprite(0, 0, width, height, 'background');
 }
 
 const createMap = game => {
