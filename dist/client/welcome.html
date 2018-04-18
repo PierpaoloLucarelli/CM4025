@@ -1,25 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+
+		body{
+			color: #fff;
+		}
+		.container{
+			width: 600px;
+			margin: auto;
+		}
+
+		.main-box{
+			margin-top: 500px;
+		}
+
+		.main-box h1{
+			text-align: center;
+		}
+
+		.login, .register{
+			border: 1px solid #fff;
+			border-radius: 5px;
+			padding: 20px;
+		}
+
+		.login input, .register input{
+			background: none;
+			color: #fff;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+		.login input:focus, .register input:focus{
+			outline: none;
+		}
+
+		.login button, .register input[type="submit"]{
+			background: none;
+			border: 1px solid #fff;
+			color: #fff;
+			padding: 10px;
+			cursor: pointer;
+		}
+		.login button:hover, .register input[type="submit"]:hover{
+			background: #d743b0;
+
+		}
+	</style>
 	<title>Welcome to the game</title>
 </head>
 <body background="assets/sprites/wall.png">
-	<h1>Welcome to the game</h1>
-	<label>Enter your credentials</label>
-	<label>Username</label>
-	<input type="text" id="username" name="username">
-	<label>Password</label>
-	<input type="password" name="pass" id="pass">
-	<button id="submit-btn" onclick="submitForm()">Go</button>
-	<form action="/register" method="POST">
-		<label>Username</label>
-		<input type="text" name="username">
-		<label>Password</label>
-		<input type="password" name="pass">
-		<label>Confirm password</label>
-		<input type="password" name="conf-pass">
-		<input type="submit" name="submit">
-	</form>
+	<div class="container">
+		<div class="main-box">
+			<h1>Welcome to the game</h1>
+			<label>Login with your account</label><br>
+			<div class="login">
+				<label>Username</label><br>
+				<input type="text" id="username" name="username"><br>
+				<label>Password</label><br>
+				<input type="password" name="pass" id="pass"><br>
+				<button id="submit-btn" onclick="submitForm()">Go</button><br>
+			</div>
+			<label>Or</label><br>
+			<div class="register">
+				<form action="/register" method="POST">
+					<label>Create an account</label><br>
+					<label>Username</label><br>
+					<input type="text" name="username"><br>
+					<label>Password</label><br>
+					<input type="password" name="pass"><br>
+					<label>Confirm password</label><br>
+					<input type="password" name="conf-pass"><br>
+					<input type="submit" name="submit">
+				</form>
+			</div>
+		</div>
+	</div>
 	<script>
 	function setCookie(name,value,days) {
 	    var expires = "";

@@ -1,26 +1,52 @@
 html
 	head
+		style(type='text/css').
+			body{
+				color: #fff;
+			}
+			.container{
+				width: 600px;
+				margin: auto;
+			}
+
+			.main-box{
+				margin-top: 500px;
+				text-align: center;
+			}
+
+			.myTable{
+			display: block;
+			margin: auto;
+			text-align: center;
+			}
+			.myTable tbody{
+				display: block;
+				margin: auto;
+			}
+
 		title= "The game market"
-	body
-		h1= "Hello " + user
-		h1= "You have "
-			span#points #{points}
+	body(background="assets/sprites/wall.png")
+		.container
+			.main-box
+				h1= "Hello " + user
+				h1= "You have "
+					span#points #{points} credits
 
-		h2="Select a car"
+				h2="Select a car you wish to purchase"
 
-		table.myTable
-			tr.table
-				th Model
-				th Speed
-				th Cost (points)
-				th action
-			each car in cars
-				tr.table 
-					td #{car.model}
-					td #{car.speed}
-					td #{car.cost}
-					td 
-						button Buy
+				table.myTable(align="center")
+					tr.table
+						th Model
+						th Speed
+						th Cost (points)
+						th action
+					each car in cars
+						tr.table 
+							td #{car.model}
+							td #{car.speed}
+							td #{car.cost}
+							td 
+								button Buy
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
 	script.
 		$("tr.table button").click(function() {
