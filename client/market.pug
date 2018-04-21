@@ -1,7 +1,9 @@
 html
 	head
+		link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")
 		style(type='text/css').
 			body{
+				font-family: 'Montserrat', sans-serif;
 				color: #fff;
 			}
 			.container{
@@ -15,13 +17,26 @@ html
 			}
 
 			.myTable{
-			display: block;
 			margin: auto;
 			text-align: center;
 			}
 			.myTable tbody{
 				display: block;
 				margin: auto;
+			}
+
+			.myTable td{
+				padding: 20px 40px;
+			}
+
+
+
+			.myTable button{
+				background: none;
+				color: #fff;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
 			}
 
 		title= "The game market"
@@ -35,16 +50,19 @@ html
 				h2="Select a car you wish to purchase"
 
 				table.myTable(align="center")
-					tr.table
+					tr.table(align="center")
 						th Model
 						th Speed
 						th Cost (points)
-						th action
+						th Preview
+						th Action
 					each car in cars
 						tr.table 
 							td #{car.model}
 							td #{car.speed}
 							td #{car.cost}
+							td
+								img(src='assets/sprites/' + car.model + '/' + car.model + ".png")
 							td 
 								button Buy
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
