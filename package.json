@@ -1,5 +1,5 @@
 {
-  "name": "MMORP",
+  "name": "MMORPG",
   "version": "1.0.0",
   "description": "Simple multiplayer online car game",
   "main": "index.js",
@@ -13,7 +13,7 @@
     "Socket.io",
     "Phaser.js"
   ],
-  "author": "Gustavo Domaradzki",
+  "author": "Pierpaolo Lucarelli",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

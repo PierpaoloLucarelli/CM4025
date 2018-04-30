@@ -17,10 +17,12 @@ app.use(cors())
 app.use('/vendor', express.static(path.join(__dirname, './../../vendor')))
 app.use('/assets', express.static(path.join(__dirname, './../../client/assets')))
 
+// main game
 app.get("/game", function(req,res){
 	res.sendFile(path.join(__dirname, './../../dist/client/index.html'))
 })
 
+// welcome page
 app.get("/", function(req,res){
 	res.sendFile(path.join(__dirname, './../../dist/client/welcome.html'))
 })
@@ -39,6 +41,7 @@ app.post("/", function(req,res){
     });
 })
 
+// get used details by username
 app.get('/user/:user', function(req,res){
     userSchema.getUser(req.params.user, function(err, user){
         if(err){
@@ -49,6 +52,7 @@ app.get('/user/:user', function(req,res){
     })
 });
 
+// get the cars in the market and show the market page to the user
 app.get("/market", function(req, res){
     var user =  parseCookies(req).username
     if(user != ""){
@@ -69,16 +73,8 @@ app.get("/market", function(req, res){
     }
 })
 
+// buy a car form the market by username and carname 
 app.post("/market", function(req,res){
-
-    // console.log(req.body);
-    // carSchema.addCar(req.body, function(err){
-    //     if(err){
-    //         console.log(err);
-    //     } else{
-    //         console.log("ok");
-    //     }
-    // })
     var user =  parseCookies(req).username
     if(user != ""){
         var car = req.body
@@ -107,6 +103,7 @@ app.post("/market", function(req,res){
 
 app.use(express.static(path.join(__dirname, './../../dist/client')))
 
+// register a user account
 app.post("/register", function(req,res){
 	var username = req.body.username;
 	var pass = req.body.pass;
@@ -119,6 +116,7 @@ app.post("/register", function(req,res){
     });
 })
 
+// helper function to transform cookies into json obect
 function parseCookies (request) {
     var list = {},
         rc = request.headers.cookie;

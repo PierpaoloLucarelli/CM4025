@@ -8,6 +8,7 @@ var userSchema = require("./models/users.js");
 
 Server.listen(PORT, () => console.log('Game server running on:', PORT))
 
+// reference to player socket ids
 const players = {}
 
 io.on('connection', socket => {
@@ -25,11 +26,12 @@ io.on('connection', socket => {
     io.emit('update-players', players)
   })
 
+  // collision detection
   socket.on('collision', data => {
     console.log("collided")
     socket.broadcast.to(data.loose_id).emit('death', 'you died')
     delete players[data.loose_id]
-    userSchema.addPoint(data.win_username, function(err){
+    userSchema.addPoint(data.win_username, function(err){ // update the points of the winning car
       if(err){
         console.log(err);
       } 
@@ -37,6 +39,7 @@ io.on('connection', socket => {
     io.emit('update-players', players)    
   })
 
+  // when a chat message is received
   socket.on('chat message', function(msg){
     console.log('message: ' + msg);
     io.emit('chat message', msg);

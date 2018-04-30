@@ -16,3 +16,7 @@ class App extends Phaser.Game {
 	$.get( "/user/" + user, function(user_details) {
   		const SimpleGame = new App(user_details)
 	});
+
+  $("#respawn-btn").click(function(){
+      location.reload();
+  });
