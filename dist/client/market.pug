@@ -39,8 +39,45 @@ html
 				cursor: pointer;
 			}
 
+			.popup{
+				position: absolute;
+				top: 400px;
+				width: 400px;
+				border: 1px solid #fff;
+				border-radius: 5px;
+				padding: 20px;
+				left: 50%;
+				height: 150px;
+				background: #fefefe;
+				color: #222;
+				text-align: center;
+				transform: translateX(-50%);
+				display: none;
+			}	
+
+			.popup a{
+				background: none;
+				border: 1px solid #222;
+				padding: 10px;
+				border-radius: 5px;
+				display: block;
+				text-decoration: none;
+				color: #222;
+				width: 200px;
+				margin: 0 auto;
+				cursor: pointer;
+			}
+
+			.popup a:hover{
+				background: #222;
+				color: #fff;
+			}
+
 		title= "The game market"
 	body(background="assets/sprites/wall.png")
+		.popup
+			p You have bought the car
+			a(href="/game") Back to the game
 		.container
 			.main-box
 				h1= "Hello " + user
@@ -73,14 +110,16 @@ html
 			var tableData = $row.children("td").map(function() {
 			return $(this).text();
 		}).get();
-		console.log(tableData);
-			$.post( "market", {
+
+		$.post( "/market", {
 			model: tableData[0],
 			speed: tableData[1],
 			cost: tableData[2],
 			points: $("#points").html()
 		}).done(function( data ) {
-				console.log("done");
+				console.log(data);
+				$(".popup p").html(data);
+				$(".popup").show();
 			});
 		});
 		

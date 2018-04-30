@@ -81,11 +81,13 @@ app.post("/market", function(req,res){
         var points = req.body.points;
         userSchema.buyCar(user, car, function(err){
             if(err){
+                res.send("You don't have enough points to buy this car");
                 console.log(err)
             } else{
                 if(parseInt(points) >= parseInt(car.cost)){
                     userSchema.updateLevel(user, parseInt(points) - parseInt(car.cost), function(err){
                         if(err){
+                            console.log("lol");
                             res.send("something went wrong");
                         } else{
                             console.log("user bought a car");
@@ -93,6 +95,7 @@ app.post("/market", function(req,res){
                         }
                     });
                 } else{
+                    res.send("not enough points to buy car");
                     console.log("not enough points to buy car");
                 }
 

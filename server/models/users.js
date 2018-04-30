@@ -113,6 +113,7 @@ exports.buyCar = function(user, car, cb){
                 });
             } else{
                 console.log("not enough points");
+                cb("Not enough points")
             }
         }
     })
