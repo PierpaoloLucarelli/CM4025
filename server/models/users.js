@@ -30,7 +30,8 @@ exports.createUser = function(username, pass, cb){
 }
 
 exports.setUnlock = function(username, cb){
-    userModel.findOneAndUpdate({name: userModel}, {unlock: "2"}, cb);
+    console.log("unlocking");
+    userModel.findOneAndUpdate({name: username}, {unlock: "2"}, cb);
 }
 
 exports.getUser = function(username, cb){

@@ -81,18 +81,16 @@ app.get("/set_level", function(req,res){
         if(err){
             res.send("user not found");
         } else{
-            console.log(level);
-            console.log(user.level);
             if(level=="2" && u.level >= 60){
                 userSchema.setUnlock(u.name, function(err){
                     if(err){
                         res.send("error");
                     } else{
-                        res.send("Ok");
+                        res.send("Level unlocked");
                     }
                 });
             } else{
-                res.send("Not enough points");
+                res.send({msg: "Not enough points for this level", err: true});
             }
         }
     })

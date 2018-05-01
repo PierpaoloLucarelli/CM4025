@@ -12,7 +12,11 @@ const worldCreator = game => {
   // Here we set the bounds of our game world
   game.world.setBounds(0, 0, width, height)
   // createMap(game)
-  game.bg = game.add.tileSprite(0, 0, width, height, 'background');
+  if(game.l == "2"){
+    game.bg = game.add.tileSprite(0, 0, width, height, 'background2');  
+  }else{
+    game.bg = game.add.tileSprite(0, 0, width, height, 'background');
+  }
 }
 
 const createMap = game => {

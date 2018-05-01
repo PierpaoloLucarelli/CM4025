@@ -92,9 +92,12 @@ html
 
 		title= "The game market"
 	body(background="assets/sprites/wall.png")
-		.popup
-			p You Don't have enough points for this level
-			a(href="/game") Back to the game
+		.popup#popup-1
+			p.msg You Don't have enough points for this level
+			a(href="/game") Play level one
+		.popup#popup-2
+			p.msg Level unlocked
+			a(href="/game?level=2") Play level Two
 		.container
 			.main-box
 				h1= "Hello " + user
@@ -129,7 +132,11 @@ html
 			event.preventDefault();
 			var l = $(this).attr("level");
 			$.get( "set_level?level=" + l, function( data ) {
-				console.log(data);
+				if(data.err){
+					$("#popup-1").show();
+				} else{
+					$("#popup-2").show();
+				}
 			});
 		});
 		

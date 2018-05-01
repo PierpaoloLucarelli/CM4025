@@ -23,6 +23,8 @@ class Game extends Phaser.State {
   preload () {
     // Loads files
     this.user = this.state.states.User;
+    console.log(this.state.states);
+    this.game.l = this.user.l;
     fileLoader(this.game)
   }
 
