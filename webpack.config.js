@@ -41,6 +41,10 @@ const config = {
     {
       from: './client/market.pug',
       to: path.resolve(__dirname, 'dist/client')
+    },
+    {
+      from: './client/levels.pug',
+      to: path.resolve(__dirname, 'dist/client')
     }
   ])
   ]

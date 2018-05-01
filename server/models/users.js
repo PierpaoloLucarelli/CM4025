@@ -8,6 +8,7 @@ var User = new Schema({
     name:       {type: String, unique: true},
     password:   String,
     level: {type: Number, default: 0},
+    unlock: String,
     car: {type: String, default: "car1"}
 });
 
@@ -26,6 +27,10 @@ exports.createUser = function(username, pass, cb){
         }
     });
     });
+}
+
+exports.setUnlock = function(username, cb){
+    userModel.findOneAndUpdate({name: userModel}, {unlock: "2"}, cb);
 }
 
 exports.getUser = function(username, cb){

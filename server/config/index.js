@@ -36,10 +36,31 @@ app.post("/", function(req,res){
             res.send("wrong credentials");
         } else {
             // req.session.user = user;
-            res.redirect("/game")
+            res.redirect("/levels")
         }
     });
 })
+
+app.get("/levels", function(req, res){
+    var user =  parseCookies(req).username
+    if(user != ""){
+        userSchema.getScore(user,  function(err, score){
+            if(err){
+                console.log(err);
+            } else{
+                carSchema.getAll(function(err, cars){
+                    if(err){
+                        console.log(err);
+                        res.send("somethign went wrong");
+                    } else{
+                        res.render('levels.pug', {user: user, points: score, cars: cars })
+                    }
+                });
+            }
+        })
+    }
+})
+
 
 // get used details by username
 app.get('/user/:user', function(req,res){
@@ -50,6 +71,32 @@ app.get('/user/:user', function(req,res){
             res.send(user);
         }
     })
+});
+
+app.get("/set_level", function(req,res){
+    var level = req.query.level;
+    var user =  parseCookies(req).username
+    if(user != ""){
+        userSchema.getUser(user, function(err, u){
+        if(err){
+            res.send("user not found");
+        } else{
+            console.log(level);
+            console.log(user.level);
+            if(level=="2" && u.level >= 60){
+                userSchema.setUnlock(u.name, function(err){
+                    if(err){
+                        res.send("error");
+                    } else{
+                        res.send("Ok");
+                    }
+                });
+            } else{
+                res.send("Not enough points");
+            }
+        }
+    })
+    }
 });
 
 // get the cars in the market and show the market page to the user

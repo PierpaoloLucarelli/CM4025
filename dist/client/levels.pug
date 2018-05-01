@@ -1,0 +1,135 @@
+html
+	head
+		link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")
+		style(type='text/css').
+			body{
+				font-family: 'Montserrat', sans-serif;
+				color: #fff;
+			}
+			.container{
+				width: 600px;
+				margin: auto;
+			}
+
+			.main-box{
+				margin-top: 500px;
+				text-align: center;
+			}
+
+			.myTable{
+			margin: auto;
+			text-align: center;
+			}
+
+			.unlocked{
+				color: #00b894;
+			}
+
+			.locked{
+				color: #d63031;
+			}
+
+			.myTable tbody{
+				display: block;
+				margin: auto;
+			}
+
+			.myTable td{
+				padding: 20px 40px;
+			}
+
+
+
+			.myTable button{
+				background: none;
+				color: #fff;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+
+			.myTable a{
+				background: none;
+				color: #fff;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+
+			.popup{
+				position: absolute;
+				top: 400px;
+				width: 400px;
+				border: 1px solid #fff;
+				border-radius: 5px;
+				padding: 20px;
+				left: 50%;
+				height: 150px;
+				background: #fefefe;
+				color: #222;
+				text-align: center;
+				transform: translateX(-50%);
+				display: none;
+			}	
+
+			.popup a{
+				background: none;
+				border: 1px solid #222;
+				padding: 10px;
+				border-radius: 5px;
+				display: block;
+				text-decoration: none;
+				color: #222;
+				width: 200px;
+				margin: 0 auto;
+				cursor: pointer;
+			}
+
+			.popup a:hover{
+				background: #222;
+				color: #fff;
+			}
+
+		title= "The game market"
+	body(background="assets/sprites/wall.png")
+		.popup
+			p You Don't have enough points for this level
+			a(href="/game") Back to the game
+		.container
+			.main-box
+				h1= "Hello " + user
+				h1= "You have "
+					span#points #{points} credits
+
+				h2="Chose your level"
+
+				table.myTable(align="center")
+					tr.table(align="center")
+						th level
+						th Required points
+						th Status
+						th Action
+					tr.table 
+						- var locked = points >= 0 ? "unlocked" : "locked"; 
+						td Level 1
+						td 0
+						td(class=locked) #{locked}
+						td 
+							a(href="game" level="1") Play
+					tr.table 
+						- var locked = points >= 60 ? "unlocked" : "locked"; 
+						td Level 2
+						td.locked 60pts
+						td(class=locked) #{locked}
+						td 
+							a(href="game" level="2").play-btn Play
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+	script.
+		$(".play-btn").click(function(event) {
+			event.preventDefault();
+			var l = $(this).attr("level");
+			$.get( "set_level?level=" + l, function( data ) {
+				console.log(data);
+			});
+		});
+		
