@@ -25,7 +25,8 @@ Points can be used in this game in two ways:
 ![example of cars](https://raw.githubusercontent.com/PierpaoloLucarelli/CM4025/master/screens/1.png?token=AMAyAtyt7c5C5DHr6tACHCGGhTCyfN8Kks5a8tBkwA%3D%3D)
 As the game is a real-time multiplayer game, the players can directly with each other simply by playing the game. There is no limit to the numbers of concurrent players that can join, but the performance of the server may be affected by too may concurrent connections. 
 
-PIC OF CHAT
+![chat of the game](https://raw.githubusercontent.com/PierpaoloLucarelli/CM4025/master/screens/chat.png?token=AMAyAiogY0_NQtjFmekc2wn8T45cD3QBks5a8tC0wA%3D%3D)
+
 To add another level of social interaction, a chat was implemented were the players can broadcast their messages to every other player in the game. 
 
 ## Technology used
@@ -46,7 +47,7 @@ y = cary + (Sin(θ) + LengthOfCar / 2)
 
 Example of how the X point of the tip of the car is calculated:
 
-IMG CAR
+![cos of car](https://raw.githubusercontent.com/PierpaoloLucarelli/CM4025/master/screens/coscar.png?token=AMAyAsU5V56bn8zFwpTtocuBppYOG_wxks5a8tDKwA%3D%3D)
 
 The functionality of the pages like **market** and **levels** were implemented using JQuery, as there was only a need of simple AJAX calls to the server. 
 
