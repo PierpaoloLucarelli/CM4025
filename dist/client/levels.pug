@@ -38,6 +38,14 @@ html
 				padding: 20px 40px;
 			}
 
+			.hilit{
+				color: #f368e0;
+			}
+
+			.table a:hover{
+				background: #000;
+				color: #fff;
+			}
 
 
 			.myTable button{
@@ -50,8 +58,11 @@ html
 
 			.myTable a{
 				background: none;
-				color: #fff;
+				color: #222;
 				padding: 10px;
+				border: none;
+				text-decoration: none;
+				background: #fff;
 				border-radius: 5px;
 				cursor: pointer;
 			}
@@ -100,9 +111,11 @@ html
 			a(href="/game?level=2") Play level Two
 		.container
 			.main-box
-				h1= "Hello " + user
+				h1= "Hello "
+					span.hilit user
 				h1= "You have "
-					span#points #{points} credits
+					span#points.hilit #{points}
+					|  credits
 
 				h2="Chose your level"
 

@@ -21,7 +21,23 @@
         color: #000;
         text-decoration: none;
       }
+      #level-btn{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+        border: none;
+        background: #fff;
+        border-radius: 5px;
+        color: #000;
+        text-decoration: none;
+      }
       #market-btn:hover{
+        background: #000;
+        color: #fff;
+      }
+
+      #level-btn:hover{
         background: #000;
         color: #fff;
       }
@@ -73,10 +89,11 @@
   </head>
   <body>
     <a href="/market" id="market-btn">Go to market</a>
+    <a href="/levels" id="level-btn">Go to levels</a>
     <div id="chat">
       <ul id="messages"></ul>
         <input id="m" autocomplete="off" />
-        <button id="msg-btn">Start</button>
+        <button id="msg-btn">Send</button>
     </div>
     <div class="popup">
       <p>You have died</p>    
