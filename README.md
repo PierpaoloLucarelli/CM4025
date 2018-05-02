@@ -22,7 +22,7 @@ Points can be used in this game in two ways:
 
 ### Social interaction
 
-PIC OF CARS
+![example of cars](https://raw.githubusercontent.com/PierpaoloLucarelli/CM4025/master/screens/1.png?token=AMAyAtyt7c5C5DHr6tACHCGGhTCyfN8Kks5a8tBkwA%3D%3D)
 As the game is a real-time multiplayer game, the players can directly with each other simply by playing the game. There is no limit to the numbers of concurrent players that can join, but the performance of the server may be affected by too may concurrent connections. 
 
 PIC OF CHAT
