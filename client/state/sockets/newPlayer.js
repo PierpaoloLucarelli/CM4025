@@ -1,3 +1,4 @@
+// When a new player connects
 const newPlayer = (socket, player, car) => {
   socket.on('connect', () => {
     socket.emit('new-player', {

@@ -1,3 +1,4 @@
+// Save a reference for each car in mongodb
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
@@ -12,6 +13,7 @@ var Car = new Schema({
 
 var carModel =  mongoose.model("Car", Car, "cars");
 
+// add  a car to db
 exports.addCar = function(car, cb){
     new carModel({
             model: car.model,
@@ -26,6 +28,7 @@ exports.addCar = function(car, cb){
     });
 }
 
+// get all cars from db
 exports.getAll = function(cb){
     carModel.find({}, function(err, cars) {
         if(err){

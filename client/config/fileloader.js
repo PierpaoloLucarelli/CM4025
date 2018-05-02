@@ -1,3 +1,4 @@
+// load the assests like cars and bacgrkound
 import { ASSETS_URL } from '.'
 
 const fileLoader = game => {

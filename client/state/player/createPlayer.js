@@ -1,3 +1,4 @@
+// creating a new player
 const createPlayer = (x, y, game, car) => {
 	if(car == null){
 		car = "car1"

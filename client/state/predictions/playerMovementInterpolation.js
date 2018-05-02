@@ -1,3 +1,4 @@
+// this code is not mine: I found an online tutorial for car drvigin with phaser
 const playerMovementInterpolation = otherPlayers => {
   for (let id in otherPlayers) {
     let player = otherPlayers[id]
@@ -12,11 +13,9 @@ const playerMovementInterpolation = otherPlayers => {
       direction *= Math.PI * 2
       player.sprite.body.rotation += direction * 0.30
 
-      // Interpolate the player's name position
       player.playerName.x += (player.playerName.target_x - player.playerName.x) * 0.30
       player.playerName.y += (player.playerName.target_y - player.playerName.y) * 0.30
 
-      // Interpolate the player's speed text position
       player.speedText.x += (player.speedText.target_x - player.speedText.x) * 0.30
       player.speedText.y += (player.speedText.target_y - player.speedText.y) * 0.30
 

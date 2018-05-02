@@ -90,6 +90,7 @@ class Game extends Phaser.State {
     }
   }
 
+  // chat messages
   sendMessage(){
     console.log('sengind')
     socket.emit('chat message', $('#m').val());

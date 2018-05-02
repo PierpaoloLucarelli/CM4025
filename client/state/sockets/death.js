@@ -1,3 +1,4 @@
+// whena  player dies
 const death = (socket, player) => {
   socket.on('death', () => {
       $(".popup").show();

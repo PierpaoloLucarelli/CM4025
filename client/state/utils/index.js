@@ -6,6 +6,7 @@ export const createText = (game, target) =>
     align: 'center'
   })
 
+// read the user cookies 
 export const getCookie = (name) =>{
     var nameEQ = name + "="
     var ca = document.cookie.split(';')

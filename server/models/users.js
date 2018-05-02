@@ -14,6 +14,8 @@ var User = new Schema({
 
 var userModel =  mongoose.model("User", User, "users");
 
+
+// create a new user
 exports.createUser = function(username, pass, cb){
     bcrypt.hash(pass, 10, function(err, hash) {
         new userModel({
@@ -29,11 +31,15 @@ exports.createUser = function(username, pass, cb){
     });
 }
 
+
+// unlock level 2
 exports.setUnlock = function(username, cb){
     console.log("unlocking");
     userModel.findOneAndUpdate({name: username}, {unlock: "2"}, cb);
 }
 
+
+// get user details
 exports.getUser = function(username, cb){
     userModel.findOne({name: username}, function(err, user){
         if(err){
@@ -44,6 +50,8 @@ exports.getUser = function(username, cb){
     });
 }
 
+
+// validate user for log in
 exports.validateUser = function(username, pass, cb){
     userModel.findOne({name: username}, function(err, user){
         if(!user){
@@ -62,6 +70,7 @@ exports.validateUser = function(username, pass, cb){
 }
 
 
+// update the users score
 exports.updateLevel = function(user, level, cb){
     console.log("updating score of : "+ user + "to: " + level);
     userModel.findOneAndUpdate({name :user}, {"level": level}, function(err){
@@ -72,6 +81,8 @@ exports.updateLevel = function(user, level, cb){
     });
 }
 
+
+// check if sessione existst
 exports.checkSession = function(username, cb){
     userModel.findOne({name: username}, function(err, user){
         if(!user){
@@ -83,6 +94,7 @@ exports.checkSession = function(username, cb){
 }
 
 
+// add one point to the users score
 exports.addPoint = function(user, cb){
 
     userModel.findOneAndUpdate({name :user}, {$inc : {'level' : 1}}, function(err){
@@ -95,6 +107,8 @@ exports.addPoint = function(user, cb){
     })
 }
 
+
+// gets the users's score
 exports.getScore = function(user, cb){
 
     userModel.findOne({name: user}, function(err, usr){
@@ -106,6 +120,8 @@ exports.getScore = function(user, cb){
     })
 }
 
+
+// adds a car to a user 
 exports.buyCar = function(user, car, cb){
     userModel.findOne({name: user}, function(err, usr){
         if(err){

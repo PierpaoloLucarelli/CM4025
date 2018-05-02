@@ -12,11 +12,8 @@ const createText = (game, target) =>
 const updatePlayers = (socket, otherPlayers, game) => {
   socket.on('update-players', playersData => {
     let playersFound = {}
-    // Iterate over all players
     for (let index in playersData) {
       const data = playersData[index]
-      // In case a player hasn't been created yet
-      // We make sure that we won't create a second instance of it
       if (otherPlayers[index] === undefined && index !== socket.id) {
         const newPlayer = player(data.x, data.y, game,null, data.car)
         newPlayer.playerName = createText(game, newPlayer)
@@ -44,7 +41,6 @@ const updatePlayers = (socket, otherPlayers, game) => {
       }
     }
 
-    // Check if there's no missing players, if there is, delete them
     for (let id in otherPlayers) {
       if (!playersFound[id]) {
         otherPlayers[id].sprite.destroy()
