@@ -35,7 +35,7 @@ const config = {
     new HtmlWebpackPlugin({ template: './client/index.html' }),
     new CopyWebpackPlugin([
    {
-      from: './client/welcome.html',
+      from: './client/welcome.pug',
       to: path.resolve(__dirname, 'dist/client')
     },
     {

@@ -24,7 +24,7 @@ app.get("/game", function(req,res){
 
 // welcome page
 app.get("/", function(req,res){
-	res.sendFile(path.join(__dirname, './../../dist/client/welcome.html'))
+	res.render("welcome");
 })
 
 app.post("/", function(req,res){
@@ -159,7 +159,7 @@ app.post("/register", function(req,res){
         if(err){
             res.render("error.jade", {error: err});
         } else {
-            res.redirect("/");
+            res.render("welcome", {msg: "Account has been created"});
         }
     });
 })
