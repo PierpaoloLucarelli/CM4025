@@ -75,3 +75,9 @@ The server of the game uses the following technologies:
 |/market | Buys a car          |POST| JSON |
  
 
+## Future work and improvements
+
+- Make the cars more customisable by adding car parts like: Engine, Wheels, etc. to the market. 
+- I wasn't able to separate the levels by players, meaning that players on level 1 can still see the players in level2. To separate the players by level I would have to implement Socket.io rooms and keep a reference for each user that shows which socket room it belongs in.
+- Add more levels to add further progress. 
+- The workings of the collision detection when two cars collide head-to-head is a bit unstable, producing random results in deciding which player wins and which loses the collision. One solution might be to penalise both players. 
