@@ -98,8 +98,8 @@ class Game extends Phaser.State {
 
   getCarTip(){
     const p = this.player.sprite
-    let x = p.body.x + (Math.cos(p.body.rotation * p.width / 2))
-    let y = p.body.y + (Math.sin(p.body.rotation * p.width / 2))
+    let x = p.body.x + (Math.cos(p.body.rotation) * p.width / 2)
+    let y = p.body.y + (Math.sin(p.body.rotation) * p.width / 2)
     return [x,y]
   }
 
