@@ -22,6 +22,7 @@ Progression is determined by the points accumulated by the player over time. Poi
 Points can be used in this game in two ways:
 
 - To **upgrade** the player's car: The players can enter a marketplace where it is possible to purchase and upgrade the player's car using the points accumulated during gameplay. Each car has a price to be paid in points. When a player buys a car the cost of the car is deducted form the points of the player. 
+![Game market](https://raw.githubusercontent.com/PierpaoloLucarelli/CM4025/master/screens/market.png)
 - To **upgrade** to another level: Once the player has reached a total of 60pts, the player can chose to unlock another level. Different levels have different arenas where the players can compete. 
 
 ### Social interaction
