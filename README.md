@@ -7,6 +7,10 @@ This is a README intended to provide an overview of the project requirements for
 
 This section describes the main features and functionality of the game.
 
+## link to online game:
+
+[link to game](http://cm4025.herokuapp.com/)
+
 ### Theme
 
 The chosen them was **Sports** / **racing**. The implemented game consists of a demolition-derby style multi-level game, where players can join an arena and compete against each other. 
